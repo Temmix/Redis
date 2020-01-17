@@ -151,3 +151,5 @@ LRANGE people 1 2   // (index based)
 1) "Ollie"
 2) "Ileri"
 
+TO BE CONTINUED FROM THE BELOW LINK AT THE TIME 18:32
+https://www.youtube.com/watch?v=Hbt56gFj998
