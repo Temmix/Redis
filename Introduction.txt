@@ -1,0 +1,153 @@
+                                          WORKING WITH REDIS
+                                       =======================   
+
+// Check connection with redis
+===============================
+Ping
+  ==> PONG
+
+ECHO 'Hello World'
+  ==> "Hello World"
+
+// Get and Set key value pair
+=============================
+SET foo 100
+  ==> OK
+
+GET foo
+  ==> "100"
+
+// Increase a value or decrease a value
+=======================================
+INCR foo or use DECR foo
+  ==> (integer) 101  or (integer) 99
+  
+GET foo
+  ==> 101
+
+// Check if exists in redis
+============================
+EXISTS foo
+  ==> (integer) 1
+
+EXISTS fool
+  ==> (integer) 0
+
+// Delete key value pair
+========================
+DEL foo
+  ==> (integer) 1
+  
+GET foo
+  ==> nil
+  
+EXISTS foo
+  ==> (integer) 0
+
+// Clear all records
+=====================
+FLUSHALL
+  ==> OK
+  
+GET foo
+  ==> nil
+
+// setting more values
+==========================
+SET server:name somdkfslleqkekqw
+  ==> OK
+SET server:port  8000
+  ==> OK
+  
+GET server:name
+  ==> somdkfslleqkekqw
+  
+GET server:port
+  ==> 8000
+  
+// Set expiry time for key value
+================================
+SET name 'Jessica'
+  ==> OK
+  
+EXPIRE name 50
+  ==> (integer) 1
+  
+// Check time to live (ttl)
+===========================
+TTL name
+  ==> (integer) 45
+  
+// Set expiry time along with key value pair
+============================================
+SETEX greeting 10 "Hello World!"
+  ==> OK
+  
+TTL greeting
+  ==> (integer) 7
+  
+// Remove expiration from a key value and persist 
+==================================================
+SETEX greeting 100 "Hello World!"
+  ==> OK
+  
+TTL greeting
+  ==> (integer) 90
+  
+PERSIST greeting
+  ==> (integer) 1
+  
+TTL greeting
+  ==> (integer) -2
+  
+// Setting more than one key value pair
+=======================================
+MSET key1 "Hello" key2 "World" 
+  ==> OK
+  
+GET key1
+  ==> "Hello"
+ 
+GET key2
+  ==> "World"
+  
+// Append to a key value
+==========================
+APPEND key1 " World!"
+  ==> OK
+  
+GET key1
+  ==> "Hello World"
+  
+// Rename a key
+RENAME key1 specialname
+  ==> OK
+  
+GET key1
+  ==> (nil)
+  
+GET specialname
+  ==> "Hello World"
+  
+// Working with list
+==========================
+LPUSH people "Temi"
+  ==> (integer) 1
+  
+LPUSH people "Ollie"
+  ==> (integer) 2
+  
+LPUSH people "Ileri"
+  ==> (integer) 3
+
+// List everyone from 1st to last
+===============================
+LRANGE people 0 -1
+1) "Temi"
+2) "Ollie"
+3) "Ileri"
+
+LRANGE people 1 2   // (index based)
+1) "Ollie"
+2) "Ileri"
+
